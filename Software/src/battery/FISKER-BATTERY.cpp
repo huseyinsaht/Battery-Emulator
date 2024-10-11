@@ -1,6 +1,6 @@
 #ifdef FISKER_BATTERY
 #include <algorithm>  // For std::min and std::max
-#include "../femslayer/femslayer.h"
+#include "../datalayer/datalayer.h"
 #include "../devboard/utils/events.h"
 #include "FISKER-BATTERY.h"
 
@@ -89,7 +89,12 @@ void receive_can_battery(CAN_frame rx_frame) {
   datalayer.battery.status.CAN_battery_still_alive = CAN_STILL_ALIVE;
   switch (rx_frame.ID) {
     case 0x2F5: 
-     datalayer.battery.status.real_soc = rx_frame.data.u8[5];
+    	datalayer.battery.status.real_soc = rx_frame.data.u8[5];
+     break;
+    case 0xE9:
+    	datalayer.battery.status.battery_voltage = rx_frame.data.u8[7] << 8 || rx_frame.data.u8[8];
+    	datalayer.battery.status.battery_current = rx_frame.data.u8[5] << 8 || rx_frame.data.u8[6];
+     break;
     default:
       break;
   }

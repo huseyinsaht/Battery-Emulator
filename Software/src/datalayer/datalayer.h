@@ -1,22 +1,103 @@
 #ifndef _DATALAYER_H_
 #define _DATALAYER_H_
 
-#include "../include.h"
+#include "../../USER_SETTINGS.h"
+#include "../devboard/utils/types.h"
+#include "../system_settings.h"
 
 typedef struct {
-  /** uint32_t */
-  /** Total energy capacity in Watt-hours */
-  uint32_t total_capacity_Wh = BATTERY_WH_MAX;
+	  /*Battery interface channels*/
+	  uint16_t battery_soc;
+	  uint16_t battery_soh;
+	  uint16_t battery_voltage;
+	  uint16_t battery_current;
+	  uint16_t battery_capacity;
+	  uint16_t battery_charge_max_voltage ;
+	  uint16_t battery_charge_max_current ;
+	  uint16_t battery_discharge_min_voltage ;
+	  uint16_t battery_discharge_max_current ;
+	  uint16_t battery_min_cell_temperature;
+	  uint16_t battery_max_cell_temperature;
+	  uint16_t battery_min_cell_voltage;
+	  uint16_t battery_max_cell_voltage;
+	  uint16_t battery_inner_resistance;
 
-  /** uint16_t */
-  /** The maximum intended packvoltage, in deciVolt. 4900 = 490.0 V */
-  uint16_t max_design_voltage_dV = 5000;
-  /** The minimum intended packvoltage, in deciVolt. 3300 = 330.0 V */
-  uint16_t min_design_voltage_dV = 2500;
-  /** BYD CAN specific setting, max charge in deciAmpere. 300 = 30.0 A */
-  uint16_t max_charge_amp_dA = BATTERY_MAX_CHARGE_AMP;
-  /** BYD CAN specific setting, max discharge in deciAmpere. 300 = 30.0 A */
-  uint16_t max_discharge_amp_dA = BATTERY_MAX_DISCHARGE_AMP;
+	  /*Battery FISKER BMS channels*/
+	  uint16_t battery_balancing_status;
+	  uint16_t battery_predicted_charge_voltage_long_time;//[for short time 3000s value]
+	  uint16_t battery_predicted_charge_voltage_middle_time;//[for short time 30s value]
+	  uint16_t battery_predicted_charge_voltage_short_time;//[for short time 10s value]
+	  uint16_t battery_inlet_temperature;
+	  uint16_t battery_outlet_temperature;
+	  uint16_t battery_predicted_discharge_current_long_time;//[for short time 3000s value]
+	  uint16_t battery_predicted_discharge_current_middle_time;//[for short time 30s value]
+	  uint16_t battery_predicted_discharge_current_short_time;//[for short time 10s value]
+	  uint16_t battery_predicted_discharge_voltage_long_time;//[for short time 3000s value]
+	  uint16_t battery_predicted_discharge_voltage_middle_time;//[for short time 30s value]
+	  uint16_t battery_predicted_discharge_voltage_short_time;//[for short time 10s value]
+	  uint16_t battery_rolling_counter;
+	  uint16_t battery_average_temperature;
+	  uint16_t battery_balancing_activation_status;
+	  uint16_t battery_cell_voltage_unbalanced_warning;
+	  uint16_t battery_general_status;
+	  uint16_t battery_target_coolant_inlet_max_temperature;
+	  uint16_t battery_target_coolant_inlet_min_temperature;
+	  uint16_t battery_target_coolant_inlet_temperature;;
+	  uint16_t battery_water_inlet_temperature_requirements_of_pack;
+	  uint16_t battery_inlet_water_temperature_sensor_fault;
+	  uint16_t battery_outlet_water_temperature_sensor_fault;
+	  uint16_t battery_over_voltage_fault_pack_1;
+	  uint16_t battery_under_voltage_fault_pack_1;
+	  uint16_t battery_high_and_low_voltage_interlock;
+	  uint16_t battery_bcu_eeprom_read_write_failure;
+	  uint16_t battery_bcu_status;
+	  uint16_t battery_average_cell_voltage;
+	  uint16_t battery_cell_temperature_min_warning;
+	  uint16_t battery_cell_tempratures[MAX_AMOUNT_TEMPERATURE_CELLS];
+	  uint16_t battery_cell_voltages[MAX_AMOUNT_VOLTAGE_CELLS];
+	  uint16_t battery_t15_status;
+	  uint16_t battery_t30c_status;
+	  uint16_t battery_t30c_voltage;
+	  uint16_t battery_and_bobc_communication_failure;//FAULT
+	  uint16_t battery_and_ccu_communication_failure;//FAULT
+	  uint16_t battery_and_ecc_communication_failure;//FAULT
+	  uint16_t battery_and_vcu_communication_failure;//FAULT
+	  uint16_t battery_and_slave_measurement_communication_failure;//FAULT
+	  uint16_t battery_and_bobc_communication_timeout;//FAULT
+	  uint16_t battery_and_ecc_communication_timeout;//FAULT
+	  uint16_t battery_main_contactor_pos_status;
+	  uint16_t battery_main_contactor_neg_status;
+	  uint16_t battery_pre_charge_relay_status;
+	  uint16_t battery_main_contactor_pos_error;
+	  uint16_t battery_main_contactor_neg_error;
+	  uint16_t battery_pre_charge_relay_error;
+	  uint16_t battery_dc_charging_socket_overtemp_fault;
+	  uint16_t battery_cat0_failure;
+	  uint16_t battery_cat1_failure;
+	  uint16_t battery_cat2_failure;
+	  uint16_t battery_cat3_failure;
+	  uint16_t battery_cat4_failure;
+	  uint16_t battery_cat5_failure;
+	  uint16_t battery_cat6_failure;
+	  uint16_t battery_cat7_failure;
+	  uint16_t battery_cat8_failure;
+	  uint16_t battery_cell_over_voltage_fault;
+	  uint16_t battery_cell_temp_high_fault;
+	  uint16_t battery_cell_temp_low_fault;
+	  uint16_t battery_cell_under_voltage_fault;
+	  uint16_t battery_cell_voltage_difference_over_limit_fault;
+	  uint16_t battery_hv_overv_oltage;
+	  uint16_t battery_hv_under_voltage;
+	  uint16_t battery_isolation_resistance_under_operational_limit_warning;
+	  uint16_t battery_over_charge_current_fault;
+	  uint16_t battery_over_discharge_current_fault;
+	  uint16_t battery_soc_low_warning;
+	  uint16_t battery_soc_high_warning;
+	  uint16_t battery_functional_safety_fault;
+	  uint16_t battery_general_hardware_fault;
+	  uint16_t battery_hardware_status;
+	  uint16_t battery_hv_contactor_status;
+	  uint16_t battery_hv_interlock_status;
 
   /** uint8_t */
   /** Total number of cells in the pack */
