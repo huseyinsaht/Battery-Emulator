@@ -98,6 +98,9 @@ typedef struct {
 	  uint16_t battery_hardware_status;
 	  uint16_t battery_hv_contactor_status;
 	  uint16_t battery_hv_interlock_status;
+    uint16_t battery_insulation_resistance_neg_pole;
+    uint16_t battery_insulation_resistance_pos_pole;
+    
 
   /** uint8_t */
   /** Total number of cells in the pack */

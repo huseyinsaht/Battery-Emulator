@@ -95,6 +95,20 @@ void receive_can_battery(CAN_frame rx_frame) {
     	datalayer.battery.status.battery_voltage = rx_frame.data.u8[7] << 8 || rx_frame.data.u8[8];
     	datalayer.battery.status.battery_current = rx_frame.data.u8[5] << 8 || rx_frame.data.u8[6];
      break;
+     case 0x360
+      	datalayer.battery.status.battery_insulation_resistance_pos_pole =  rx_frame.data.u8[5] << 8 || rx_frame.data.u8[4]; 
+        datalayer.battery.status.battery_insulation_resistance_neg_pole =  rx_frame.data.u8[7] << 8 || rx_frame.data.u8[6]; 
+     break;
+     case 0x2EE
+        datalayer.battery.status.battery_main_contactor_pos_status =  (rx_frame.data.u8[0] & 0x00);
+     break;
+      case 0x2EF
+        datalayer.battery.status.battery_main_contactor_neg_status =  (rx_frame.data.u8[0] & 0x00);
+     break;
+     case 0x2EF
+        datalayer.battery.status.battery_soc =  rx_frame.data.u8[0] << 8;
+        datalayer.battery.status.battery_soh =  rx_frame.data.u8[5] << 8;
+     break;
     default:
       break;
   }
