@@ -23,6 +23,9 @@ typedef struct {
 	  uint16_t battery_inner_resistance;
 
 	  /*Battery FISKER BMS channels*/
+	  uint16_t battery_average_cell_voltage;
+	  uint16_t battery_allowed_min_cell_voltage;
+	  uint16_t battery_allowed_max_cell_voltage;
 	  uint16_t battery_balancing_status;
 	  uint16_t battery_predicted_charge_voltage_long_time;//[for short time 3000s value]
 	  uint16_t battery_predicted_charge_voltage_middle_time;//[for short time 30s value]
@@ -86,7 +89,7 @@ typedef struct {
 	  uint16_t battery_cell_temp_low_fault;
 	  uint16_t battery_cell_under_voltage_fault;
 	  uint16_t battery_cell_voltage_difference_over_limit_fault;
-	  uint16_t battery_hv_overv_oltage;
+	  uint16_t battery_hv_over_oltage;
 	  uint16_t battery_hv_under_voltage;
 	  uint16_t battery_isolation_resistance_under_operational_limit_warning;
 	  uint16_t battery_over_charge_current_fault;
@@ -98,6 +101,11 @@ typedef struct {
 	  uint16_t battery_hardware_status;
 	  uint16_t battery_hv_contactor_status;
 	  uint16_t battery_hv_interlock_status;
+	  uint16_t battery_precharge_relay_blocked;
+	  uint16_t battery_insulation_state;
+	  uint16_t battery_cell_temp_too_high;
+	  uint16_t battery_cell_temp_too_low;
+	  uint16_t battery_remaining_soc;
 
   /** uint8_t */
   /** Total number of cells in the pack */
