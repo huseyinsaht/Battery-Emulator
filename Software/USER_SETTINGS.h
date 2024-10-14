@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define FISKER_BATTERY
-#define BYD_MODBUS  //Enable this line to emulate over Modbus RTU
+#define MODBUS  //Enable this line to emulate over Modbus RTU
 
 /* Select hardware used for Battery-Emulator */
 #define HW_LILYGO
