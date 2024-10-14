@@ -143,8 +143,8 @@ void receive_can_battery(CAN_frame rx_frame) {
 		datalayer.battery.status.battery_hv_contactor_status=rx_frame.data.u8[3];
 		datalayer.battery.status.battery_hardware_status=rx_frame.data.u8[3];
 		datalayer.battery.status.battery_general_hardware_fault=rx_frame.data.u8[3];
-		datalayer.battery.status.=rx_frame.data.u8[3];
-		datalayer.battery.status.=rx_frame.data.u8[3];
+		datalayer.battery.status.battery_general_hardware_fault=rx_frame.data.u8[3];
+		datalayer.battery.status.battery_general_hardware_fault=rx_frame.data.u8[3];
     	break;
     default:
       break;
