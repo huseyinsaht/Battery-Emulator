@@ -16,6 +16,9 @@ extern unsigned long testlib_millis;
 extern MySerial Serial;
 extern uint8_t bms_status;
 extern uint8_t LEDcolor;
+enum bms_status_enum { STANDBY = 0, INACTIVE = 1, DARKSTART = 2, ACTIVE = 3, FAULT = 4, UPDATING = 5 };
+enum battery_chemistry_enum { NCA, NMC, LFP };
+enum led_color { GREEN, YELLOW, RED, BLUE, RGB };
 
 /* Mock millis() */
 static inline unsigned long millis(void) {

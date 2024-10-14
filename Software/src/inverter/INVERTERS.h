@@ -7,6 +7,10 @@
 #include "BYD-MODBUS.h"
 #endif
 
+#ifdef MODBUS
+#include "MODBUS.h"
+#endif
+
 
 #ifdef CAN_INVERTER_SELECTED
 void update_values_can_inverter();

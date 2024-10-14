@@ -106,6 +106,20 @@ typedef struct {
 	uint16_t battery_cell_temp_too_low;
 	uint16_t battery_remaining_soc;
 
+	/** uint32_t */
+	/** Total energy capacity in Watt-hours */
+	uint32_t total_capacity_Wh = BATTERY_WH_MAX;
+
+	/** uint16_t */
+	/** The maximum intended packvoltage, in deciVolt. 4900 = 490.0 V */
+	uint16_t max_design_voltage_dV = 5000;
+	/** The minimum intended packvoltage, in deciVolt. 3300 = 330.0 V */
+	uint16_t min_design_voltage_dV = 2500;
+	/** BYD CAN specific setting, max charge in deciAmpere. 300 = 30.0 A */
+	uint16_t max_charge_amp_dA = BATTERY_MAX_CHARGE_AMP;
+	/** BYD CAN specific setting, max discharge in deciAmpere. 300 = 30.0 A */
+	uint16_t max_discharge_amp_dA = BATTERY_MAX_DISCHARGE_AMP;
+
 	/** uint8_t */
 	/** Total number of cells in the pack */
 	uint8_t number_of_cells;
