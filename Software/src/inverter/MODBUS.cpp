@@ -5,15 +5,12 @@
 #include "MODBUS.h"
 
 #define HISTORY_LENGTH 3  // Amount of samples(minutes) that needs to match for register to be considered stale
-static unsigned long previousMillis60s = 0; // will store last time a 60s event occured
 static uint32_t user_configured_max_discharge_W = 0;
 static uint32_t user_configured_max_charge_W = 0;
 static uint32_t max_discharge_W = 0;
 static uint32_t max_charge_W = 0;
-static uint16_t register_401_history[HISTORY_LENGTH] = { 0 };
 static uint8_t history_index = 0;
 static uint8_t bms_char_dis_status = STANDBY;
-static bool all_401_values_equal = false;
 
 void update_modbus_registers_inverter() {
 	handle_update_data_modbus();

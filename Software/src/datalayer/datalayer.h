@@ -1,9 +1,7 @@
 #ifndef _DATALAYER_H_
 #define _DATALAYER_H_
 
-#include "../../USER_SETTINGS.h"
-#include "../devboard/utils/types.h"
-#include "../system_settings.h"
+#include "../include.h"
 
 typedef struct {
 	/*Battery interface channels*/
@@ -55,8 +53,8 @@ typedef struct {
 	uint16_t battery_bcu_eeprom_read_write_failure;
 	uint16_t battery_bcu_status;
 	uint16_t battery_cell_temperature_min_warning;
-	uint16_t battery_cell_tempratures[MAX_AMOUNT_TEMPERATURE_CELLS];
-	uint16_t battery_cell_voltages[MAX_AMOUNT_VOLTAGE_CELLS];
+	uint16_t battery_cell_tempratures[96];
+	uint16_t battery_cell_voltages[96];
 	uint16_t battery_t15_status;
 	uint16_t battery_t30c_status;
 	uint16_t battery_t30c_voltage;
