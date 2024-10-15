@@ -11,6 +11,10 @@
 #include "BYD-MODBUS.h"
 #endif
 
+#ifdef MODBUS
+#include "MODBUS.h"
+#endif
+
 #ifdef BYD_SMA
 #include "BYD-SMA.h"
 #endif
