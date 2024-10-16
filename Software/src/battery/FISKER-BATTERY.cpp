@@ -177,6 +177,5 @@ void send_timeout() {
 	initalValue ++;
 	}
   }
-}
 
 #endif
