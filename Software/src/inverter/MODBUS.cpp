@@ -128,8 +128,8 @@ void handle_update_data_modbus() {
 	mbPV[107] = datalayer.battery.info.battery_memory_empty_status;
     mbPV[108] = datalayer.battery.info.battery_state_machine_status;
 	mbPV[109] = datalayer.battery.info.battery_bdu_status;
-
-	datalayer.battery.info.battery_hv_contactor_status = mbPV[109];
+	mbPV[110] = datalayer.battery.info.battery_hv_contactor_status_read_back;
+	datalayer.battery.info.battery_hv_contactor = mbPV[120];
 }
 
 #endif

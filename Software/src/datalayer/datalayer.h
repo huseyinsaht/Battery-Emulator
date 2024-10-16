@@ -118,6 +118,7 @@ typedef struct {
     uint16_t battery_memory_empty_status;
     uint16_t battery_state_machine_status;
     uint16_t battery_bdu_status;
+    uint16_t battery_hv_contactor_status_read_back;
 
     //Write
     uint16_t battery_hv_contactor;
