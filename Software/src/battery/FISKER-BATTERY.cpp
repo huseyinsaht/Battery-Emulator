@@ -9,7 +9,7 @@ CAN_frame FISKER_93 = {.FD = true,
                      .ext_ID = false,
                      .DLC = 16,
                      .ID = 0x93,
-                     .data = {0x00, 0x20, 0x11, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
+                     .data = {0x00, 0x21, 0x11, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
 CAN_frame FISKER_94 = {.FD = true,
                      .ext_ID = false,
                      .DLC = 16,
@@ -155,11 +155,11 @@ void send_can_battery() {
       set_event(EVENT_CAN_OVERRUN, (currentMillis - previousMillis20));
     }
     previousMillis20 = currentMillis;
-	send_timeout();
-	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, initalValue);
+	//send_timeout();
+	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, 0xF3);
     transmit_can(&FISKER_93, can_config.battery);
-	FISKER_94.data.u8[0] = initalValue;
-	transmit_can(&FISKER_94, can_config.battery);
+	//FISKER_94.data.u8[0] = initalValue;
+	//transmit_can(&FISKER_94, can_config.battery);
   }
 }
 
