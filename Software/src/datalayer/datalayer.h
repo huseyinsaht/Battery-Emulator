@@ -86,7 +86,7 @@ typedef struct {
 		uint16_t battery_cell_temp_low_fault;
 		uint16_t battery_cell_under_voltage_fault;
 		uint16_t battery_cell_voltage_difference_over_limit_fault;
-		uint16_t battery_hv_over_oltage;
+		uint16_t battery_hv_over_voltage;
 		uint16_t battery_hv_under_voltage;
 		uint16_t battery_isolation_resistance_under_operational_limit_warning;
 		uint16_t battery_over_charge_current_fault;
@@ -103,6 +103,23 @@ typedef struct {
 		uint16_t battery_cell_temp_too_high;
 		uint16_t battery_cell_temp_too_low;
 		uint16_t battery_remaining_soc;
+    uint16_t battery_average_cell_temperature;
+    uint16_t battery_thermal_management_required;
+    uint16_t battery_soc_real;
+    uint16_t battery_actual_capacity;
+    uint16_t battery_operating_states;
+    uint16_t battery_software_status;
+    uint16_t battery_current_sensor_status;
+    uint16_t battery_isolation_status;
+    uint16_t battery_service_disconnect_status;
+    uint16_t battery_measurement_module_status;
+    uint16_t battery_configuration_status;
+    uint16_t battery_state_machine_status;
+    uint16_t battery_bdu_status;
+
+    //Write
+    uint16_t battery_hv_contactor;
+
 
   /** uint32_t */
   /** Total energy capacity in Watt-hours */

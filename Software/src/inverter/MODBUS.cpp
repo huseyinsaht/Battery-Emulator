@@ -96,7 +96,7 @@ void handle_update_data_modbus() {
 	mbPV[75] = datalayer.battery.info.battery_cell_temp_low_fault ;
 	mbPV[76] = datalayer.battery.info.battery_cell_under_voltage_fault ;
 	mbPV[77] = datalayer.battery.info.battery_cell_voltage_difference_over_limit_fault ;
-	mbPV[78] = datalayer.battery.info.battery_hv_over_oltage ;
+	mbPV[78] = datalayer.battery.info.battery_hv_over_voltage ;
 	mbPV[79] = datalayer.battery.info.battery_hv_under_voltage ;
 	mbPV[80] = datalayer.battery.info.battery_isolation_resistance_under_operational_limit_warning ;
 	mbPV[81] = datalayer.battery.info.battery_over_charge_current_fault ;
@@ -112,10 +112,23 @@ void handle_update_data_modbus() {
 	mbPV[91] = datalayer.battery.info.battery_insulation_state ;
 	mbPV[92] = datalayer.battery.info.battery_cell_temp_too_high ;
 	mbPV[93] = datalayer.battery.info.battery_cell_temp_too_low ;
-	mbPV[94] = datalayer.battery.info. battery_remaining_soc;
+	mbPV[94] = datalayer.battery.info.battery_remaining_soc;
 	mbPV[95] = std::min(datalayer.battery.info.total_capacity_Wh,static_cast<uint32_t>(60000u));  //Cap to 60kWh
+    mbPV[96] =  datalayer.battery.info.battery_average_cell_temperature;
+    mbPV[97] =  datalayer.battery.info.battery_thermal_management_required;
+    mbPV[98] =  datalayer.battery.info.battery_soc_real;
+    mbPV[99] =  datalayer.battery.info.battery_actual_capacity;
+    mbPV[100] = datalayer.battery.info.battery_operating_states;
+    mbPV[101] = datalayer.battery.info.battery_software_status;
+    mbPV[102] = datalayer.battery.info.battery_current_sensor_status;
+    mbPV[103] = datalayer.battery.info.battery_isolation_status;
+    mbPV[104] = datalayer.battery.info.battery_service_disconnect_status;
+    mbPV[105] = datalayer.battery.info.battery_measurement_module_status;
+    mbPV[106] = datalayer.battery.info.battery_configuration_status;
+    mbPV[107] = datalayer.battery.info.battery_state_machine_status;
+	mbPV[108] = datalayer.battery.info.battery_bdu_status;
 
-
+	datalayer.battery.info.battery_hv_contactor_status = mbPV[109];
 }
 
 #endif
