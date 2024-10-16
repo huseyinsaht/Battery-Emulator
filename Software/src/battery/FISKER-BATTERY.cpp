@@ -171,8 +171,10 @@ void send_timeout() {
       set_event(EVENT_CAN_OVERRUN, (currentMillis - previousSecond1));
     }
     previousSecond1 = currentMillis;
-	for(int i = 0 ; i< 255; i++){
-		initalValue = i;
+	if(initalValue ==255){
+		initalValue = 0 ;
+	}
+	initalValue ++;
 	}
   }
 }
