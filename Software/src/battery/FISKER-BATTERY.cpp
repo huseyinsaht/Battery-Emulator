@@ -26,25 +26,25 @@ void receive_can_battery(CAN_frame rx_frame) {
     	datalayer.battery.info.battery_soc = rx_frame.data.u8[5];
      break;
     case 0xE9:
-    	datalayer.battery.info.battery_voltage = (rx_frame.data.u8[6]<<8)  || rx_frame.data.u8[7];
-    	datalayer.battery.info.battery_current = (rx_frame.data.u8[4]<<8 )  || rx_frame.data.u8[5];
+    	datalayer.battery.info.battery_voltage = (rx_frame.data.u8[6])  | (rx_frame.data.u8[7] >> 8);
+    	datalayer.battery.info.battery_current = (rx_frame.data.u8[4] )  | (rx_frame.data.u8[5] >> 8);
      break;
     case 0x2F7:
-    	datalayer.battery.info.battery_allowed_max_cell_voltage = (rx_frame.data.u8[0]<<8 )  || rx_frame.data.u8[1] ;
-    	datalayer.battery.info.battery_allowed_min_cell_voltage = (rx_frame.data.u8[2]<<8 )  ||  rx_frame.data.u8[3] ;
-    	datalayer.battery.info.battery_discharge_max_current = (rx_frame.data.u8[4]<<8 )  || rx_frame.data.u8[5] ;
-    	datalayer.battery.info.battery_charge_max_current = (rx_frame.data.u8[6]<<8 )   || rx_frame.data.u8[7] ;
+    	datalayer.battery.info.battery_allowed_max_cell_voltage = (rx_frame.data.u8[0] )  | (rx_frame.data.u8[1]>> 8) ;
+    	datalayer.battery.info.battery_allowed_min_cell_voltage = (rx_frame.data.u8[2] )  |  (rx_frame.data.u8[3] >> 8);
+    	datalayer.battery.info.battery_discharge_max_current = (rx_frame.data.u8[4] )  | (rx_frame.data.u8[5]>> 8) ;
+    	datalayer.battery.info.battery_charge_max_current = (rx_frame.data.u8[6] )   | (rx_frame.data.u8[7]>> 8) ;
     	break;
     case 0xF2:
-    	datalayer.battery.info.battery_max_cell_voltage = (rx_frame.data.u8[0]<<8 )   || rx_frame.data.u8[1] ;
-    	datalayer.battery.info.battery_min_cell_voltage = (rx_frame.data.u8[2]<<8 )  || rx_frame.data.u8[3] ;
-    	datalayer.battery.info.battery_average_cell_voltage = (rx_frame.data.u8[4] <<8 ) || rx_frame.data.u8[5] ;
-    	datalayer.battery.info.battery_t30c_voltage = (rx_frame.data.u8[6] <<8 )  || rx_frame.data.u8[7] ;
+    	datalayer.battery.info.battery_max_cell_voltage = (rx_frame.data.u8[0] )   | (rx_frame.data.u8[1]>> 8) ;
+    	datalayer.battery.info.battery_min_cell_voltage = (rx_frame.data.u8[2] )  | (rx_frame.data.u8[3] >> 8);
+    	datalayer.battery.info.battery_average_cell_voltage = (rx_frame.data.u8[4] ) | (rx_frame.data.u8[5] >> 8);
+    	datalayer.battery.info.battery_t30c_voltage = (rx_frame.data.u8[6])  | (rx_frame.data.u8[7]>> 8) ;
 		break;
     case 0x3A5:
-    	datalayer.battery.info.battery_target_coolant_inlet_temperature =  rx_frame.data.u8[5];
-    	datalayer.battery.info.battery_target_coolant_inlet_min_temperature = rx_frame.data.u8[6];
-    	datalayer.battery.info.battery_target_coolant_inlet_max_temperature = rx_frame.data.u8[7];
+    	datalayer.battery.info.battery_target_coolant_inlet_temperature = (rx_frame.data.u8[5] >> 8);
+    	datalayer.battery.info.battery_target_coolant_inlet_min_temperature = (rx_frame.data.u8[6]>> 8);
+    	datalayer.battery.info.battery_target_coolant_inlet_max_temperature = (rx_frame.data.u8[7]>> 8);
     	break;
     case 0x215:
     	datalayer.battery.info.battery_cell_over_voltage_fault = (rx_frame.data.u8[2] &0x20) >> 5;
