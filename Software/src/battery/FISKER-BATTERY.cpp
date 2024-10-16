@@ -107,6 +107,7 @@ void receive_can_battery(CAN_frame rx_frame) {
 		datalayer.battery.info.battery_cat1_failure = (rx_frame.data.u8[3] & 0x2) >> 1;
 		datalayer.battery.info.battery_cat0_failure = (rx_frame.data.u8[3] & 0x1);
 		
+		datalayer.battery.info.battery_cat8_failure = (rx_frame.data.u8[4] & 0x1);
 		
 		datalayer.battery.info.battery_t30c_status = (rx_frame.data.u8[4] & 0x80) >> 7;
 		datalayer.battery.info.battery_service_disconnect_status = (rx_frame.data.u8[4] & 0x40) >> 6;
@@ -115,7 +116,7 @@ void receive_can_battery(CAN_frame rx_frame) {
 		datalayer.battery.info.battery_configuration_status = (rx_frame.data.u8[4] & 0x8) >> 3;
 		datalayer.battery.info.battery_memory_empty_status = (rx_frame.data.u8[4] & 0x4) >> 2;
 		datalayer.battery.info.battery_hardware_status = (rx_frame.data.u8[4] & 0x2) >> 1;
-		datalayer.battery.info.battery_cat8_failure = (rx_frame.data.u8[4] & 0x1);
+		
 
 
 		datalayer.battery.info.battery_t15_status = (rx_frame.data.u8[5] & 0x1);

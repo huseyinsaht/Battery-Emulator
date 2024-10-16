@@ -103,6 +103,7 @@ typedef struct {
 		uint16_t battery_cell_temp_too_high;
 		uint16_t battery_cell_temp_too_low;
 		uint16_t battery_remaining_soc;
+
     uint16_t battery_average_cell_temperature;
     uint16_t battery_thermal_management_required;
     uint16_t battery_soc_real;
@@ -114,6 +115,7 @@ typedef struct {
     uint16_t battery_service_disconnect_status;
     uint16_t battery_measurement_module_status;
     uint16_t battery_configuration_status;
+    uint16_t battery_memory_empty_status;
     uint16_t battery_state_machine_status;
     uint16_t battery_bdu_status;
 
