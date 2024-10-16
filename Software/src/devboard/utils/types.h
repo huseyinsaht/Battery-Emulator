@@ -32,6 +32,7 @@ enum led_color { GREEN, YELLOW, RED, BLUE, RGB };
 #define INTERVAL_100_MS_DELAYED 120
 #define INTERVAL_200_MS_DELAYED 240
 #define INTERVAL_500_MS_DELAYED 550
+#define INTERVAL_1_S_DELAYED 1050
 
 #define CAN_STILL_ALIVE 12
 // Set by battery each time we get a CAN message. Decrements every 5seconds. When reaching 0, sets event
