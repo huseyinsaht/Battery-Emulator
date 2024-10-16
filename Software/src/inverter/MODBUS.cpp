@@ -125,8 +125,9 @@ void handle_update_data_modbus() {
     mbPV[104] = datalayer.battery.info.battery_service_disconnect_status;
     mbPV[105] = datalayer.battery.info.battery_measurement_module_status;
     mbPV[106] = datalayer.battery.info.battery_configuration_status;
-    mbPV[107] = datalayer.battery.info.battery_state_machine_status;
-	mbPV[108] = datalayer.battery.info.battery_bdu_status;
+	mbPV[107] = datalayer.battery.info.battery_memory_empty_status;
+    mbPV[108] = datalayer.battery.info.battery_state_machine_status;
+	mbPV[109] = datalayer.battery.info.battery_bdu_status;
 
 	datalayer.battery.info.battery_hv_contactor_status = mbPV[109];
 }

@@ -62,6 +62,10 @@ void receive_can_battery(CAN_frame rx_frame) {
     	datalayer.battery.info.battery_discharge_max_current = (rx_frame.data.u8[4] <<8)  | (rx_frame.data.u8[5]>> 8) ;
     	datalayer.battery.info.battery_charge_max_current = (rx_frame.data.u8[6] <<8)   | (rx_frame.data.u8[7]>> 8) ;
     	break;
+	case 0x2F9:
+		datalayer.battery.info.battery_charge_max_voltage = (rx_frame.data.u8[0] <<8)  | (rx_frame.data.u8[1]>> 8) ;
+    	datalayer.battery.info.battery_discharge_min_voltage = (rx_frame.data.u8[2] <<8)  |  (rx_frame.data.u8[3] >> 8);
+		break;
     case 0xF2:
     	datalayer.battery.info.battery_max_cell_voltage = (rx_frame.data.u8[0]<<8 )  | (rx_frame.data.u8[1]>> 8) ;
     	datalayer.battery.info.battery_min_cell_voltage = (rx_frame.data.u8[2] <<8)  | (rx_frame.data.u8[3] >> 8);
@@ -89,7 +93,7 @@ void receive_can_battery(CAN_frame rx_frame) {
 		break;
     case 0x330:
     	datalayer.battery.info.battery_remaining_soc = rx_frame.data.u8[3];
-    	datalayer.battery.info.battery_capacity = rx_frame.data.u8[5] << 8 || rx_frame.data.u8[4];
+    	datalayer.battery.info.battery_capacity = (rx_frame.data.u8[4] << 8) || (rx_frame.data.u8[5]>>8);
     	datalayer.battery.info.battery_insulation_state = (rx_frame.data.u8[6] &0x80) >> 7;
     	datalayer.battery.info.battery_cell_temp_too_high = (rx_frame.data.u8[6] &0x20) >> 5;
 		datalayer.battery.info.battery_cell_temp_too_low = (rx_frame.data.u8[6] & 0x1) ;
@@ -108,7 +112,7 @@ void receive_can_battery(CAN_frame rx_frame) {
 		datalayer.battery.info.battery_cat0_failure = (rx_frame.data.u8[3] & 0x1);
 		
 		datalayer.battery.info.battery_cat8_failure = (rx_frame.data.u8[4] & 0x1);
-		
+
 		datalayer.battery.info.battery_t30c_status = (rx_frame.data.u8[4] & 0x80) >> 7;
 		datalayer.battery.info.battery_service_disconnect_status = (rx_frame.data.u8[4] & 0x40) >> 6;
 		datalayer.battery.info.battery_general_status = (rx_frame.data.u8[4] & 0x20) >> 5;
@@ -145,9 +149,8 @@ void send_can_battery() {
     }
     previousMillis20 = currentMillis;
 	
-	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, 0x3F);
+	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, 0x0);
     transmit_can(&FISKER_93, can_config.battery);
-	
   }
 }
 
