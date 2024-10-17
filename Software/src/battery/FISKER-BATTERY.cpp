@@ -196,6 +196,7 @@ void send_can_battery() {
 }
 
 void send_timeout(){
+	unsigned long currentMillis = millis();
 if (currentMillis - previousMillis100 >= INTERVAL_100_MS) {
     // Check if sending of CAN messages has been delayed too much.
     if ((currentMillis - previousMillis100 >= INTERVAL_100_MS_DELAYED) && (currentMillis > BOOTUP_TIME)) {
