@@ -161,30 +161,24 @@ void send_can_battery() {
       set_event(EVENT_CAN_OVERRUN, (currentMillis - previousMillis20));
     }
     previousMillis20 = currentMillis;
-	send_timeout();
 	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, 0xF3);
     transmit_can(&FISKER_93, can_config.battery);
 	//FISKER_94.data.u8[0] = initalValue;
 	//transmit_can(&FISKER_94, can_config.battery);
   }
-}
-
-void send_timeout() {
-  unsigned long currentMillis = millis();
+  
   if (currentMillis - previousSecond1 >= INTERVAL_1_S) {
     // Check if sending of CAN messages has been delayed too much.
     if ((currentMillis - previousSecond1 >= INTERVAL_1_S_DELAYED) && (currentMillis > BOOTUP_TIME)) {
       set_event(EVENT_CAN_OVERRUN, (currentMillis - previousSecond1));
     }
     previousSecond1 = currentMillis;
-	
-	//if(initalValue ==255){
-	//	initalValue = 0 ;
-	//}
-	//initalValue ++;
 	FISKER_644.data.u8[0] = calculateCRC(FISKER_644, 8, 0xB9);
-    transmit_can(&FISKER_644, can_config.battery);
-	}
+	transmit_can(&FISKER_644, can_config.battery);
+	//FISKER_94.data.u8[0] = initalValue;
+	//transmit_can(&FISKER_94, can_config.battery);
   }
+}
+
 
 #endif
