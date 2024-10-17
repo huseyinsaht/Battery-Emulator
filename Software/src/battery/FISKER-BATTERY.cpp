@@ -32,7 +32,9 @@ CAN_frame FISKER_358 = {.FD = true,
                      .data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};					 
 
 static unsigned long previousMillis20 = 0;  // will store last time a 20ms CAN Message was sent
-static unsigned long previousSecond1 = 0;  // will store last time a 20ms CAN Message was sent
+static unsigned long previousSecond1 = 0;
+static unsigned long previousMillis100 = 0;
+  // will store last time a 20ms CAN Message was sent
 static unsigned long initalValue = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long aliveCounter = 0;  // will store last time a 20ms CAN Message was sent
 
@@ -177,7 +179,7 @@ void send_can_battery() {
 	send_timeout();
 	FISKER_260.data.u8[0] = initalValue;
 	FISKER_260.data.u8[1] = aliveCounter;
-	transmit_can(&FISKER_94, can_config.battery);
+	transmit_can(&FISKER_260, can_config.battery);
 	FISKER_94.data.u8[0] = initalValue;
 	transmit_can(&FISKER_94, can_config.battery);
   }
