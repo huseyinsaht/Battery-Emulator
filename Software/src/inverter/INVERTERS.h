@@ -3,6 +3,10 @@
 
 #include "../../USER_SETTINGS.h"
 
+#ifdef BYD_CAN
+#include "BYD-CAN.h"
+#endif
+
 #ifdef BYD_MODBUS
 #include "BYD-MODBUS.h"
 #endif
@@ -11,6 +15,33 @@
 #include "MODBUS.h"
 #endif
 
+#ifdef BYD_SMA
+#include "BYD-SMA.h"
+#endif
+
+#ifdef PYLON_CAN
+#include "PYLON-CAN.h"
+#endif
+
+#ifdef SMA_CAN
+#include "SMA-CAN.h"
+#endif
+
+#ifdef SMA_TRIPOWER_CAN
+#include "SMA-TRIPOWER-CAN.h"
+#endif
+
+#ifdef SOFAR_CAN
+#include "SOFAR-CAN.h"
+#endif
+
+#ifdef SOLAX_CAN
+#include "SOLAX-CAN.h"
+#endif
+
+#ifdef SERIAL_LINK_TRANSMITTER
+#include "SERIAL-LINK-TRANSMITTER-INVERTER.h"
+#endif
 
 #ifdef CAN_INVERTER_SELECTED
 void update_values_can_inverter();

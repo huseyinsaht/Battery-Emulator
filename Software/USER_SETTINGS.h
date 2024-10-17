@@ -3,8 +3,15 @@
 #include <WiFi.h>
 #include <stdint.h>
 
+
+/* This file contains all the battery/inverter protocol settings Battery-Emulator software */
+/* To switch between batteries/inverters, uncomment a line to enable, comment out to disable. */
+/* There are also some options for battery limits and extra functionality */
+/* To edit battery specific limits, see also the USER_SETTINGS.cpp file*/
+
+/* Select battery used */
 #define FISKER_BATTERY
-#define MODBUS  //Enable this line to emulate over Modbus RTU
+#define MODBUS
 
 /* Select hardware used for Battery-Emulator */
 #define HW_LILYGO
@@ -41,6 +48,10 @@
 
 /* Event options*/
 #define DUMMY_EVENT_ENABLED false  //Enable this line to have a dummy event that gets logged to test the interface
+
+/* Select charger used (Optional) */
+//#define CHEVYVOLT_CHARGER  //Enable this line to control a Chevrolet Volt charger connected to battery - for example, when generator charging or using an inverter without a charging function.
+//#define NISSANLEAF_CHARGER  //Enable this line to control a Nissan LEAF PDM connected to battery - for example, when generator charging
 
 /* Battery settings */
 // Predefined total energy capacity of the battery in Watt-hours
@@ -81,7 +92,7 @@ extern bool charger_HV_enabled;
 extern bool charger_aux12V_enabled;
 
 #ifdef WIFICONFIG
-extern IPAddress local_IP;
+extern IPAddress  local_IP;
 // Set your Gateway IP address
 extern IPAddress gateway;
 // Set your Subnet IP address

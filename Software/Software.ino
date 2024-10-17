@@ -526,7 +526,7 @@ void init_inverter() {
 
 void init_battery() {
   // Inform user what battery is used and perform setup
-  setup_battery();
+  //setup_battery();
 
 #ifdef CHADEMO_BATTERY
   intervalUpdateValues = 800;  // This mode requires the values to be updated faster

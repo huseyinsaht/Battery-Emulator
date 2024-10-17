@@ -10,7 +10,6 @@
 #include "FISKER-BATTERY.h"
 #endif
 
-
 #ifdef BYD_ATTO_3_BATTERY
 #include "BYD-ATTO-3-BATTERY.h"
 #endif
