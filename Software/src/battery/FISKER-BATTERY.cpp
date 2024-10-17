@@ -16,6 +16,12 @@ CAN_frame FISKER_94 = {.FD = true,
                      .ID = 0x94,
                      .data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
 
+CAN_frame FISKER_644 = {.FD = true,
+                     .ext_ID = false,
+                     .DLC = 8,
+                     .ID = 0x644,
+                     .data = {0x49, 0x00, 0x44, 0x40, 0x44, 0x44, 0x44, 0x00}};
+
 static unsigned long previousMillis20 = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long previousSecond1 = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long initalValue = 0;  // will store last time a 20ms CAN Message was sent
@@ -161,6 +167,17 @@ void send_can_battery() {
 	//FISKER_94.data.u8[0] = initalValue;
 	//transmit_can(&FISKER_94, can_config.battery);
   }
+
+  unsigned long currentMillis644 = millis();
+  if (currentMillis644 - previousSecond1 >= INTERVAL_1_S) {
+    // Check if sending of CAN messages has been delayed too much.
+    if ((currentMillis644 - previousSecond1 >= INTERVAL_1_S_DELAYED) && (currentMillis644 > BOOTUP_TIME)) {
+      set_event(EVENT_CAN_OVERRUN, (currentMillis644 - previousSecond1));
+    }
+    previousSecond1 = currentMillis644;
+    //FISKER_644.data.u8[0] = calculateCRC(FISKER_644, 8, 0xF3);
+    transmit_can(&FISKER_644, can_config.battery);
+	}
 }
 
 void send_timeout() {
