@@ -15,16 +15,27 @@ CAN_frame FISKER_94 = {.FD = true,
                      .DLC = 16,
                      .ID = 0x94,
                      .data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
-
 CAN_frame FISKER_644 = {.FD = true,
                      .ext_ID = false,
                      .DLC = 8,
                      .ID = 0x644,
                      .data = {0x49, 0x00, 0x44, 0x40, 0x44, 0x44, 0x44, 0x00}};
+CAN_frame FISKER_260 = {.FD = true,
+                     .ext_ID = false,
+                     .DLC = 16,
+                     .ID = 0x260,
+                     .data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};
+CAN_frame FISKER_358 = {.FD = true,
+                     .ext_ID = false,
+                     .DLC = 16,
+                     .ID = 0x358,
+                     .data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};					 
 
 static unsigned long previousMillis20 = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long previousSecond1 = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long initalValue = 0;  // will store last time a 20ms CAN Message was sent
+static unsigned long aliveCounter = 0;  // will store last time a 20ms CAN Message was sent
+
 
 const unsigned char crc8_table[256] =
     {  // CRC8_SAE_J1850_ZER0 formula,0x1D Poly,initial value 0x3F,Final XOR value varies
@@ -163,8 +174,12 @@ void send_can_battery() {
     previousMillis20 = currentMillis;
 	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, 0xF3);
     transmit_can(&FISKER_93, can_config.battery);
-	//FISKER_94.data.u8[0] = initalValue;
-	//transmit_can(&FISKER_94, can_config.battery);
+	send_timeout();
+	FISKER_260.data.u8[0] = initalValue;
+	FISKER_260.data.u8[1] = aliveCounter;
+	transmit_can(&FISKER_94, can_config.battery);
+	FISKER_94.data.u8[0] = initalValue;
+	transmit_can(&FISKER_94, can_config.battery);
   }
   
   if (currentMillis - previousSecond1 >= INTERVAL_1_S) {
@@ -175,10 +190,25 @@ void send_can_battery() {
     previousSecond1 = currentMillis;
 	FISKER_644.data.u8[0] = calculateCRC(FISKER_644, 8, 0xB9);
 	transmit_can(&FISKER_644, can_config.battery);
-	//FISKER_94.data.u8[0] = initalValue;
-	//transmit_can(&FISKER_94, can_config.battery);
   }
+
+  
 }
 
+void send_timeout(){
+if (currentMillis - previousMillis100 >= INTERVAL_100_MS) {
+    // Check if sending of CAN messages has been delayed too much.
+    if ((currentMillis - previousMillis100 >= INTERVAL_100_MS_DELAYED) && (currentMillis > BOOTUP_TIME)) {
+      set_event(EVENT_CAN_OVERRUN, (currentMillis - previousMillis100));
+    }
+    previousMillis100 = currentMillis;
+	//FISKER_260.data.u8[0] = calculateCRC(FISKER_644, 8, initalValue);
+	if(initalValue == 255){
+		initalValue = 0;
+		aliveCounter++;
+	}
+	initalValue++ ;
+  }
+}
 
 #endif
