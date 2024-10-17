@@ -32,6 +32,7 @@ CAN_frame FISKER_358 = {.FD = true,
                      .data = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}};					 
 
 static unsigned long previousMillis20 = 0;  // will store last time a 20ms CAN Message was sent
+static unsigned long previousMillis100 = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long previousSecond1 = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long initalValue = 0;  // will store last time a 20ms CAN Message was sent
 static unsigned long aliveCounter = 0;  // will store last time a 20ms CAN Message was sent
