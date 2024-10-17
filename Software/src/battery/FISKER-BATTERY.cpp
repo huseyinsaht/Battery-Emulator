@@ -164,8 +164,8 @@ void send_can_battery() {
 	send_timeout();
 	FISKER_93.data.u8[0] = calculateCRC(FISKER_93, 8, 0xF3);
     transmit_can(&FISKER_93, can_config.battery);
-	FISKER_94.data.u8[0] = initalValue;
-	transmit_can(&FISKER_94, can_config.battery);
+	//FISKER_94.data.u8[0] = initalValue;
+	//transmit_can(&FISKER_94, can_config.battery);
   }
 }
 
@@ -178,11 +178,11 @@ void send_timeout() {
     }
     previousSecond1 = currentMillis;
 	
-	if(initalValue ==255){
-		initalValue = 0 ;
-	}
-	initalValue ++;
-	FISKER_644.data.u8[0] = calculateCRC(FISKER_644, 8, initalValue);
+	//if(initalValue ==255){
+	//	initalValue = 0 ;
+	//}
+	//initalValue ++;
+	FISKER_644.data.u8[0] = calculateCRC(FISKER_644, 8, 0xB9);
     transmit_can(&FISKER_644, can_config.battery);
 	}
   }
